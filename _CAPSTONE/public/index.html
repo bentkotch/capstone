@@ -51,13 +51,25 @@
     <div class="dropdown">
       <button class="dropbtn">Galbreath Hall</button>
       <div class="dropdown-content">
-        <a href="#" onclick="g_0()">Ground Floor</a>
-        <a href="#" onclick="g_1()">First Floor</a>
-        <a href="#" onclick="g_2()">Second Floor</a>
-        <a href="#" onclick="g_3()">Third Floor</a>
+        <a id="1" href="#" onclick="g_0()">Ground Floor</a>
+        <a id="2" href="#" onclick="g_1()">First Floor</a>
+        <a id="3" href="#" onclick="g_2()">Second Floor</a>
+        <a id="4" href="#" onclick="g_3()">Third Floor</a>
       </div>
     </div>
   </nav>
+
+  <script>
+    function load_level() {
+      text = localStorage.getItem("floors.json");
+      level = JSON.parse(text);
+      for (var id in level) {
+        if (level.id = ) {
+                document.getElementById("floorplan").style.backgroundImage = level.url;
+        }
+      }
+    }
+  </script>
 
   <script>
     function g_0() {
