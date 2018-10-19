@@ -69,7 +69,7 @@
       }
     }
 
-    function loadHeatMap(img_id) {
+    function renderHeatmap(img_id) {
       //Sanity Checks
       //console.log("loadHeatMap called");
       //console.log("img_id = "+img_id);
@@ -87,7 +87,7 @@
       document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
     }
 
-    function onload() {
+    function initializeHeatmap() {
       // create configuration object and create heatmap with it
       var config = {
         container: document.getElementById("floorplan"),
@@ -99,7 +99,7 @@
       heatmapInstance = h337.create(config);
     }
 
-    window.onload = onload;
+    window.onload = initializeHeatmap;
   </script>
 </head>
 
@@ -112,10 +112,10 @@
     <div class="dropdown">
       <button class="dropbtn">Galbreath Hall</button>
       <div class="dropdown-content">
-        <a href="#" onclick="loadHeatMap(0)">Ground Floor</a>
-        <a href="#" onclick="loadHeatMap(1)">First Floor</a>
-        <a href="#" onclick="loadHeatMap(2)">Second Floor</a>
-        <a href="#" onclick="loadHeatMap(3)">Third Floor</a>
+        <a href="#" onclick="renderHeatmap(0)">Ground Floor</a>
+        <a href="#" onclick="renderHeatmap(1)">First Floor</a>
+        <a href="#" onclick="renderHeatmap(2)">Second Floor</a>
+        <a href="#" onclick="renderHeatmap(3)">Third Floor</a>
       </div>
     </div>
   </nav>
