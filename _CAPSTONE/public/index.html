@@ -14,55 +14,70 @@
     var test_data = {
       "galbreath": {
         "0": {
-          "imageUrl": "images/gal_0.jpg",
+          "image_url": "images/gal_0.jpg",
           "level": 1,
-          "heatmapData": {
-            "x": 150,
-            "y": 200,
-            "value": 76,
-            "level": 1
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
           }
         },
         "1": {
-          "imageUrl": "images/gal_1.jpg",
+          "image_url": "images/gal_1.jpg",
           "level": 1,
-          "heatmapData": {
-            "x": 150,
-            "y": 200,
-            "value": 76,
-            "level": 1
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
           }
         },
         "2": {
-          "imageUrl": "images/gal_2.jpg",
+          "image_url": "images/gal_2.jpg",
           "level": 1,
-          "heatmapData": {
-            "x": 150,
-            "y": 200,
-            "value": 76,
-            "level": 1
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
           }
         },
         "3": {
-          "imageUrl": "images/gal_3.jpg",
+          "image_url": "images/gal_3.jpg",
           "level": 1,
-          "heatmapData": {
-            "x": 150,
-            "y": 200,
-            "value": 76,
-            "level": 1
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
           }
         }
       }
     }
 
     function loadHeatMap(img_id) {
-      console.log("loadHeatMap called");
-      console.log("img_id = "+img_id);
-      console.log("test_data loaded?: ");
-      console.log(test_data);
-      //var url = test_data.galbreath;
-      //console.log("img_url = "+url);
+      //Sanity Checks
+      //console.log("loadHeatMap called");
+      //console.log("img_id = "+img_id);
+      //console.log("test_data loaded?: ");
+      //console.log(test_data.galbreath[img_id].image_url);
+      console.log("Check for heatmap data in img_id");
+      console.log(test_data.galbreath[img_id].heatmap_data);
+
+      var url = test_data.galbreath[img_id].image_url;
 
       // create configuration object and create heatmap with it
       var config = {
@@ -74,10 +89,11 @@
       };
       var heatmapInstance = h337.create(config);
 
-      var dataPoints = [];
-      //add datapoints to this array here
-      heatmapInstance.addData(dataPoints);
-      //load image here
+      //loads data from test data to the heatmap
+      heatmapInstance.setData(test_data.galbreath[img_id].heatmap_data);
+
+      //loads image based on ID passed by onClick functions in drop down menus
+      document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
     }
     window.onload = loadHeatMap;
   </script>
@@ -100,23 +116,6 @@
     </div>
   </nav>
 
-  <script>
-    function g_0() {
-      document.getElementById("floorplan").style.backgroundImage = "url('images/gal_0.jpg')";
-    }
-
-    function g_1() {
-      document.getElementById("floorplan").style.backgroundImage = "url('images/gal_1.jpg')";
-    }
-
-    function g_2() {
-      document.getElementById("floorplan").style.backgroundImage = "url('images/gal_2.jpg')";
-    }
-
-    function g_3() {
-      document.getElementById("floorplan").style.backgroundImage = "url('images/gal_3.jpg')";
-    }
-  </script>
   <script>
     /*Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict-->*/
     var dropdown = document.getElementsByClassName("dropdown-btn");
