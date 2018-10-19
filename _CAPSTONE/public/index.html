@@ -11,15 +11,7 @@
   <!--scripts to load and initialize heatmap.js-->
   <script src="javascripts/heatmap.js"></script>
   <script>
-    // create configuration object and create heatmap with it
-    var config = {
-      container: document.getElementById("floorplan"),
-      radius: 50,
-      maxOpacity: .5,
-      minOpacity: 0,
-      blur: .75
-    };
-    var heatmapInstance = h337.create(config);
+    var heatmapInstance = null;
     var test_data = {
       "galbreath": {
         "0": {
@@ -88,15 +80,26 @@
 
       var url = test_data.galbreath[img_id].image_url;
 
-
-
       //loads data from test data to the heatmap
       heatmapInstance.setData(test_data.galbreath[img_id].heatmap_data);
 
       //loads image based on ID passed by onClick functions in drop down menus
       document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
     }
-    window.onload = loadHeatMap;
+
+    function onload() {
+      // create configuration object and create heatmap with it
+      var config = {
+        container: document.getElementById("floorplan"),
+        radius: 50,
+        maxOpacity: .5,
+        minOpacity: 0,
+        blur: .75
+      };
+      heatmapInstance = h337.create(config);
+    }
+
+    window.onload = onload;
   </script>
 </head>
 
