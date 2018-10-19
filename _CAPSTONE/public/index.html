@@ -7,12 +7,64 @@
   <meta name="description" content="Senior Capstone" />
   <meta name="keywords" content="capstone, heatmap, Westminster, college" />
   <meta name="author" content="Benjamin T. Kotch" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/capstone.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
   <!--scripts to load and initialize heatmap.js-->
   <script src="javascripts/heatmap.js"></script>
   <script>
-    function loadHeatMap() {
-      // create configuration object
+    var test_data = {
+      "galbreath": {
+        "0": {
+          "imageUrl": "images/gal_0.jpg",
+          "level": 1,
+          "heatmapData": {
+            "x": 150,
+            "y": 200,
+            "value": 76,
+            "level": 1
+          }
+        },
+        "1": {
+          "imageUrl": "images/gal_1.jpg",
+          "level": 1,
+          "heatmapData": {
+            "x": 150,
+            "y": 200,
+            "value": 76,
+            "level": 1
+          }
+        },
+        "2": {
+          "imageUrl": "images/gal_2.jpg",
+          "level": 1,
+          "heatmapData": {
+            "x": 150,
+            "y": 200,
+            "value": 76,
+            "level": 1
+          }
+        },
+        "3": {
+          "imageUrl": "images/gal_3.jpg",
+          "level": 1,
+          "heatmapData": {
+            "x": 150,
+            "y": 200,
+            "value": 76,
+            "level": 1
+          }
+        }
+      }
+    }
+
+    function loadHeatMap(img_id) {
+      console.log("loadHeatMap called");
+      console.log("img_id = "+img_id);
+      console.log("test_data loaded?: ");
+      console.log(test_data);
+      //var url = test_data.galbreath;
+      //console.log("img_url = "+url);
+
+      // create configuration object and create heatmap with it
       var config = {
         container: document.getElementById("floorplan"),
         radius: 50,
@@ -20,23 +72,12 @@
         minOpacity: 0,
         blur: .75
       };
-      //console.log(document.getElementById("floorplan"));
-      // create heatmap with configuration
       var heatmapInstance = h337.create(config);
-      // a single datapoint
-      var ap95 = {
-        x: 158, // x coordinate of the datapoint, a number
-        y: 126, // y coordinate of the datapoint, a number
-        value: 100 // the value at datapoint(x, y)
-      };
-      var ap94 = {
-        x: 158, // x coordinate of the datapoint, a number
-        y: 270, // y coordinate of the datapoint, a number
-        value: 100 // the value at datapoint(x, y)
-      };
-      // multiple datapoints (for data initialization use setData!!) ap95, ap94
+
       var dataPoints = [];
+      //add datapoints to this array here
       heatmapInstance.addData(dataPoints);
+      //load image here
     }
     window.onload = loadHeatMap;
   </script>
@@ -51,25 +92,13 @@
     <div class="dropdown">
       <button class="dropbtn">Galbreath Hall</button>
       <div class="dropdown-content">
-        <a id="1" href="#" onclick="g_0()">Ground Floor</a>
-        <a id="2" href="#" onclick="g_1()">First Floor</a>
-        <a id="3" href="#" onclick="g_2()">Second Floor</a>
-        <a id="4" href="#" onclick="g_3()">Third Floor</a>
+        <a href="#" onclick="loadHeatMap(0)">Ground Floor</a>
+        <a href="#" onclick="loadHeatMap(1)">First Floor</a>
+        <a href="#" onclick="loadHeatMap(2)">Second Floor</a>
+        <a href="#" onclick="loadHeatMap(3)">Third Floor</a>
       </div>
     </div>
   </nav>
-
-  <script>
-    function load_level() {
-      text = localStorage.getItem("floors.json");
-      level = JSON.parse(text);
-      for (var id in level) {
-        if (level.id = ) {
-                document.getElementById("floorplan").style.backgroundImage = level.url;
-        }
-      }
-    }
-  </script>
 
   <script>
     function g_0() {
