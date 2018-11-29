@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Capstone Project</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Senior Capstone" />
+  <meta name="keywords" content="capstone, heatmap, Westminster, college" />
+  <meta name="author" content="Benjamin T. Kotch" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+  <!--scripts to load and initialize heatmap.js-->
+  <script src="javascripts/heatmap.js"></script>
+  <script>
+    var heatmapInstance = null;
+    var test_data = {
+      "galbreath": {
+        "0": {
+          "image_url": "images/gal_0.jpg",
+          "level": 1,
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
+          }
+        },
+        "1": {
+          "image_url": "images/gal_1.jpg",
+          "level": 1,
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
+          }
+        },
+        "2": {
+          "image_url": "images/gal_2.jpg",
+          "level": 1,
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
+          }
+        },
+        "3": {
+          "image_url": "images/gal_3.jpg",
+          "level": 1,
+          "heatmap_data": {
+            "max": 100,
+            "min": 0,
+            "data": [{
+              "x": 150,
+              "y": 200,
+              "value": 100
+            }]
+          }
+        }
+      }
+    }
+
+    function renderHeatmap(img_id) {
+      //Sanity Checks
+      //console.log("loadHeatMap called");
+      //console.log("img_id = "+img_id);
+      //console.log("test_data loaded?: ");
+      //console.log(test_data.galbreath[img_id].image_url);
+      console.log("Check for heatmap data in img_id");
+      console.log(test_data.galbreath[img_id].heatmap_data);
+
+      var url = test_data.galbreath[img_id].image_url;
+
+      //loads data from test data to the heatmap
+      heatmapInstance.setData(test_data.galbreath[img_id].heatmap_data);
+
+      //loads image based on ID passed by onClick functions in drop down menus
+      document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
+    }
+
+    function initializeHeatmap() {
+      // create configuration object and create heatmap with it
+      var config = {
+        container: document.getElementById("floorplan"),
+        radius: 50,
+        maxOpacity: .5,
+        minOpacity: 0,
+        blur: .75
+      };
+      heatmapInstance = h337.create(config);
+    }
+
+    window.onload = initializeHeatmap;
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <a href="http://www.westminster.edu/index.cfm">Westminster College</a>
+  </header>
+
+  <nav>
+    <div class="dropdown">
+      <button class="dropbtn">Galbreath Hall</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="renderHeatmap(0)">Ground Floor</a>
+        <a href="#" onclick="renderHeatmap(1)">First Floor</a>
+        <a href="#" onclick="renderHeatmap(2)">Second Floor</a>
+        <a href="#" onclick="renderHeatmap(3)">Third Floor</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    /*Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict-->*/
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+  </script>
+
+  <div id="floorplan"></div>
+
+</body>
+
+</html>
