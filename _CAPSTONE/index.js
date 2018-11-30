@@ -3,35 +3,37 @@ const app = express()
 const port = 8000
 
 var mysql = require('mysql');
-
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "capstone"
+  password: "capstone",
+  database: "capstone"
 });
 
-app.use(express.static('public'))
-
-app.listen(port, () => console.log(`Capstone app listening on port ${port}!`))
-
-app.get('/api', function(req, res) {
-  res.send('hello world')
-})
-
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/api', function (req, res) {
- res.send('hello world')
-})
-
+// Connect to server
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to Server");
 });
 
-con.connect(function(err) {
-  if (err) throw err;
+app.use(express.static('public'))
+
+// respond with json from maps table when a GET request is made to the /api/maps
+app.get('/api/maps', function (req, res) {
   con.query("SELECT * FROM maps", function (err, result, fields) {
     if (err) throw err;
     console.log(result);
+    res.json(result);
   });
-});
+})
+
+app.get('/api/maps/:map_id', function (req, res) {
+  con.query("SELECT * FROM maps WHERE map_id = ?", [req.params.map_id], function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.json(result);
+  });
+})
+
+//sets app to listen on port
+app.listen(port, () => console.log(`Capstone app listening on port ${port}!`))
