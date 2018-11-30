@@ -69,6 +69,22 @@
       }
     }
 
+    function getMapUrl(map_id) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "http://localhost:80/api/maps"+"/"+map_id, true);
+      xhr.send();
+
+      function processRequest(e) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          document.getElementById("demo").innerHTML = response;
+          console.log(JSON.stringify(response));
+        }
+      }
+
+      xhr.addEventListener("readystatechange", processRequest, false);
+    }
+
     function renderHeatmap(img_id) {
       //Sanity Checks
       //console.log("loadHeatMap called");
@@ -138,6 +154,7 @@
     }
   </script>
 
+  <p id="demo">TEST TEXT</p>
   <div id="floorplan"></div>
 
 </body>
