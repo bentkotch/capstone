@@ -12,92 +12,44 @@
   <script src="javascripts/heatmap.js"></script>
   <script>
     var heatmapInstance = null;
-    var test_data = {
-      "galbreath": {
-        "0": {
-          "image_url": "images/gal_0.jpg",
-          "level": 1,
-          "heatmap_data": {
-            "max": 100,
-            "min": 0,
-            "data": [{
-              "x": 150,
-              "y": 200,
-              "value": 100
-            }]
-          }
-        },
-        "1": {
-          "image_url": "images/gal_1.jpg",
-          "level": 1,
-          "heatmap_data": {
-            "max": 100,
-            "min": 0,
-            "data": [{
-              "x": 150,
-              "y": 200,
-              "value": 100
-            }]
-          }
-        },
-        "2": {
-          "image_url": "images/gal_2.jpg",
-          "level": 1,
-          "heatmap_data": {
-            "max": 100,
-            "min": 0,
-            "data": [{
-              "x": 150,
-              "y": 200,
-              "value": 100
-            }]
-          }
-        },
-        "3": {
-          "image_url": "images/gal_3.jpg",
-          "level": 1,
-          "heatmap_data": {
-            "max": 100,
-            "min": 0,
-            "data": [{
-              "x": 150,
-              "y": 200,
-              "value": 100
-            }]
-          }
-        }
-      }
-    }
 
-    function getMapUrl(map_id) {
+    //When passed an ID, makes a call to the API and gets the JSON object
+    //containing the map an dall its data points. As of now, only passes
+    //the map
+    function getHeatMapData(map_id) {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', "http://localhost:80/api/maps"+"/"+map_id, true);
-      xhr.send();
-
-      function processRequest(e) {
+      xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          var response = JSON.parse(xhr.responseText);
-          document.getElementById("demo").innerHTML = response;
-          console.log(JSON.stringify(response));
-        }
-      }
+          var map = xhr.responseText;
+          console.log(map.map_id)
 
-      xhr.addEventListener("readystatechange", processRequest, false);
+          renderHeatMap(map);
+        }
+      };
+
+      xhr.open('GET', "http://localhost:80/api/maps" + "/" + map_id, true);
+      xhr.send();
     }
 
-    function renderHeatmap(img_id) {
-      //Sanity Checks
-      //console.log("loadHeatMap called");
-      //console.log("img_id = "+img_id);
-      //console.log("test_data loaded?: ");
-      //console.log(test_data.galbreath[img_id].image_url);
-      console.log("Check for heatmap data in img_id");
-      console.log(test_data.galbreath[img_id].heatmap_data);
+    //When getHeatMapData() is called, it passes a JSON object containing
+    //a map and all of its data points to renderHeatMap(). This parses
+    //the JSON object and renders the heat map
+    function renderHeatmap(map) {
+      console.log(map);
+      var url = map.map_url;
 
-      var url = test_data.galbreath[img_id].image_url;
+      var data = {
+        max: map.map_max,
+        min: map.map_min,
+        data: [{
+          "x": 300,
+          "y": 300,
+          "value": 100
+        }]
+      };
 
-      //loads data from test data to the heatmap
-      heatmapInstance.setData(test_data.galbreath[img_id].heatmap_data);
+      //loads data from test data to the heatmap (STILL USES TEST JSON)
+      heatmapInstance.setData(data);
 
       //loads image based on ID passed by onClick functions in drop down menus
       document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
@@ -154,8 +106,9 @@
     }
   </script>
 
-  <p id="demo">TEST TEXT</p>
+  <p id="demo"></p>
   <div id="floorplan"></div>
+
 
 </body>
 
