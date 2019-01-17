@@ -11,22 +11,22 @@
   <!--scripts to load and initialize heatmap.js-->
   <script src="javascripts/heatmap.js"></script>
   <script>
-    var heatmapInstance = null;
+    var heatMapInstance = null;
 
     //When passed an ID, makes a call to the API and gets the JSON object
-    //containing the map an dall its data points. As of now, only passes
+    //containing the map and all its data points. As of now, only passes
     //the map
     function getHeatMapData(map_id) {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
           var map = xhr.responseText;
-          console.log(map.map_id)
+          console.log(map+" getHeatMapData"); //gives correct json response
+          console.log(map.map_id+" getHeatMapData"); //gives undefined
 
           renderHeatMap(map);
         }
       };
-
       xhr.open('GET', "http://localhost:80/api/maps" + "/" + map_id, true);
       xhr.send();
     }
@@ -34,8 +34,8 @@
     //When getHeatMapData() is called, it passes a JSON object containing
     //a map and all of its data points to renderHeatMap(). This parses
     //the JSON object and renders the heat map
-    function renderHeatmap(map) {
-      console.log(map);
+    function renderHeatMap(map) {
+      console.log(map+" renderHeatMap");
       var url = map.map_url;
 
       var data = {
@@ -49,13 +49,13 @@
       };
 
       //loads data from test data to the heatmap (STILL USES TEST JSON)
-      heatmapInstance.setData(data);
+      heatMapInstance.setData(data);
 
       //loads image based on ID passed by onClick functions in drop down menus
       document.getElementById("floorplan").style.backgroundImage = "url(" + url + ")";
     }
 
-    function initializeHeatmap() {
+    function initializeHeatMap() {
       // create configuration object and create heatmap with it
       var config = {
         container: document.getElementById("floorplan"),
@@ -64,10 +64,10 @@
         minOpacity: 0,
         blur: .75
       };
-      heatmapInstance = h337.create(config);
+      heatMapInstance = h337.create(config);
     }
 
-    window.onload = initializeHeatmap;
+    window.onload = initializeHeatMap;
   </script>
 </head>
 
@@ -80,10 +80,10 @@
     <div class="dropdown">
       <button class="dropbtn">Galbreath Hall</button>
       <div class="dropdown-content">
-        <a href="#" onclick="renderHeatmap(0)">Ground Floor</a>
-        <a href="#" onclick="renderHeatmap(1)">First Floor</a>
-        <a href="#" onclick="renderHeatmap(2)">Second Floor</a>
-        <a href="#" onclick="renderHeatmap(3)">Third Floor</a>
+        <a href="#" onclick="getHeatMapData(0)">Ground Floor</a>
+        <a href="#" onclick="getHeatMapData(1)">First Floor</a>
+        <a href="#" onclick="getHeatMapData(2)">Second Floor</a>
+        <a href="#" onclick="getHeatMapData(3)">Third Floor</a>
       </div>
     </div>
   </nav>
