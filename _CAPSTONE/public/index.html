@@ -20,7 +20,7 @@
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          var map = xhr.responseText;
+          var map = JSON.parse(xhr.responseText);
           console.log(map+" getHeatMapData"); //gives correct json response
           console.log(map.map_id+" getHeatMapData"); //gives undefined
 

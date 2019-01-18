@@ -31,7 +31,7 @@ app.get('/api/maps/:map_id', function (req, res) {
   con.query("SELECT * FROM maps WHERE map_id = ?", [req.params.map_id], function (err, result, fields) {
     if (err) throw err;
     console.log(result[0]);
-    res.json(result[0]);
+    res.json(result[0]); //removes JSON object from array
   });
 })
 
