@@ -17,17 +17,19 @@
     //containing the map and all its data points. As of now, only passes
     //the map
     function getHeatMapData(map_id) {
-      console.log("getHeatMapData called");
+      console.log("STEP 1: getHeatMapData called");
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
-        console.log("onreadystatechange");
+        console.log("STEP 2: onreadystatechange");
         if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log(xhr.responseText);
+          console.log("STEP 3: xhr.responseText: "+xhr.responseText);
           var map = JSON.parse(xhr.responseText);
-          console.log(map+" getHeatMapData"); //gives correct json response
-          console.log(map.map_id+" getHeatMapData"); //gives undefined
 
-          renderHeatMap(map[0]);
+          console.log("STEP 4: Variable 'map' after JSON.parse: ");
+          console.log(map); //gives correct json response
+          console.log("STEP 5: Attempting to get map_id: "+map.map_id); //gives undefined
+
+          renderHeatMap(map);
         }
       };
       xhr.open('GET', "http://localhost:80/api/maps" + "/" + map_id, true);

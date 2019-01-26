@@ -4,19 +4,6 @@ const port = 80
 
 var mysql = require('promise-mysql');
 
-//var mysql = require('mysql');
-//var con = mysql.createConnection({
-//  user: "root",
-//  password: "capstone",
-//  database: "capstone"
-//});
-
-// Connect to server
-//con.connect(function(err) {
-//  if (err) throw err;
-//  console.log("Connected to Server");
-//});
-
 app.use(express.static('public'))
 
 // respond with json from maps table when a GET request is made to the /api/maps
@@ -45,12 +32,11 @@ app.get('/api/maps/:map_id', function (req, res) {
     //  return result;
   }).then(function(rows){
       console.log("function(rows) result: ");
-      console.log(rows);
-
-      res.sendJson;
+      console.log(JSON.stringify(rows[0]));
+      res.send(JSON.stringify(rows[0]));
   }).catch(function(error){
       if (connection && connection.end) connection.end();
-      //logs out the error
+      //logs the error
       console.log(error);
   });
 })
