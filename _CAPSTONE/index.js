@@ -15,8 +15,10 @@ app.use(express.static('public'))
 //  });
 //})
 
+
 app.get('/api/maps/:map_id', function (req, res) {
   var connection;
+  var map = null;
   mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -24,21 +26,25 @@ app.get('/api/maps/:map_id', function (req, res) {
     database: "capstone"
   }).then(function(conn){
       connection = conn;
-      var map = connection.query('SELECT * FROM maps WHERE map_id = ?', [req.params.map_id]);
-      return map;
-  //}).then(function(){
-    //  var result = connection.query('SELECT * FROM data_points WHERE map_id = ?', [req.params.map_id]);
-    //  connection.end();
-    //  return result;
+      return connection.query('SELECT * FROM maps WHERE map_id = ?', [req.params.map_id]);
   }).then(function(rows){
-      console.log("function(rows) result: ");
+      console.log("Map rows result: ");
       console.log(JSON.stringify(rows[0]));
-      res.send(JSON.stringify(rows[0]));
+      map = JSON.parse(JSON.stringify(rows[0]));
+  }).then(function(){
+      return connection.query('SELECT * FROM data_points WHERE map_id = ?', [req.params.map_id]);
+  }).then(function(rows){
+      connection.end();
+      console.log("Data_points rows result: ");
+      console.log(JSON.stringify(rows));
+      map["data_points"] = JSON.parse(JSON.stringify(rows));
+      console.log("map with data points amended onto it: "+JSON.stringify(map));
+      res.send(map);
   }).catch(function(error){
       if (connection && connection.end) connection.end();
       //logs the error
       console.log(error);
-  });
+  }).finally(function() {});
 })
 
 //sets app to listen on port
