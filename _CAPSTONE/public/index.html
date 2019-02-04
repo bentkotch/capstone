@@ -40,17 +40,14 @@
     //a map and all of its data points to renderHeatMap(). This parses
     //the JSON object and renders the heat map
     function renderHeatMap(map) {
-      console.log(map+" renderHeatMap");
+      console.log("Map returned from getHeatMapData: "+JSON.stringify(map));
+      console.log("Data set from map: "+JSON.stringify(map.data_points));
       var url = map.map_url;
 
       var data = {
         max: map.map_max,
         min: map.map_min,
-        data: [{
-          "x": 300,
-          "y": 300,
-          "value": 100
-        }]
+        data: map.data_points
       };
 
       //loads data from test data to the heatmap (STILL USES TEST JSON)
