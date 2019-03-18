@@ -1,29 +1,34 @@
+/*******************************
+  General page CSS
+*******************************/
 body, html {
   height: 100%;
   margin: 0;
-  background-color: #dcd2c4;
+  color: black;
+  background-color: #fff;
+  background-image: url(../images/index_bg.jpg);
+  font-family: 'Roboto', sans-serif;
 }
 
 /*******************************
 CSS for the site banner
 *******************************/
-.header{
-  width: 88%;
-  height: 55px;
-  margin-left: auto;
+.title_bar {
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
+  margin-left: auto;
   background-color: #003865;
+  color: #fff;
 }
 
-.header a{
+.title_text {
+  margin-top: 0px;
+  margin-bottom: 0px;
   font-family: 'CenturyOldStyleFSRegular', 'Times New Roman', serif;
-  display: inline;
   font-size: 28px;
-  color: white;
-  text-decoration: none;
   line-height: 2em;
-  text-transform: uppercase;
-  margin-left: 10px;
+  text-align: center;
 }
 
 /*******************************

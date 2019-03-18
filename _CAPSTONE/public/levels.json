@@ -1,8 +1,0 @@
-{
-  "levels": [
-    {"id": 1, "url": "images/gal_0.jpg", "level": 1}
-    {"id": 2, "url": "images/gal_1.jpg", "level": 1}
-    {"id": 3, "url": "images/gal_2.jpg", "level": 1}
-    {"id": 4, "url": "images/gal_3.jpg", "level": 1}
-  ]
-}
