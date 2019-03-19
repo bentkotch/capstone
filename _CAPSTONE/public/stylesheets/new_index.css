@@ -1,0 +1,72 @@
+/*******************************
+  General page CSS
+*******************************/
+body, html {
+  height: 100%;
+  margin: 0;
+  color: black;
+  background-color: #fff;
+  background-image: url(../images/index_bg.jpg);
+  font-family: 'Roboto', sans-serif;
+}
+
+/*******************************
+CSS for the site banner
+*******************************/
+.title_bar {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #003865;
+  color: #fff;
+}
+
+.title_text {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'CenturyOldStyleFSRegular', 'Times New Roman', serif;
+  font-size: 28px;
+  line-height: 2em;
+  text-align: center;
+}
+
+/*******************************
+CSS for the top nav bar
+*******************************/
+.topnav {
+  color: #fff;
+  background-color: #003865;
+  overflow: hidden;
+}
+
+.topnav a {
+  color: inherit;
+  background-color: inherit;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  width: 33.3333%;
+}
+
+.topnav a:hover {
+  color: #fff;
+  background-color: #085087;
+}
+
+/*******************************
+  CSS for the flex box
+*******************************/
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.column p{
+  padding: 10px 20px 10px 20px;
+}
