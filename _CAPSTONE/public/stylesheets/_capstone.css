@@ -1,0 +1,82 @@
+/*******************************
+  General CSS
+*******************************/
+body, html {
+  height: 100%;
+  margin: 0;
+  color: black;
+  background-color: #fff;
+  background-image: url(../images/index_bg.jpg);
+  font-family: 'Roboto', sans-serif;
+}
+
+/*******************************
+  Side Nav Bar
+*******************************/
+.side_nav {
+  height: 100%;
+  width: 12%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: 	#013765;
+  padding-top: 20px;
+  overflow-x: hidden;
+}
+
+.side_nav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.side_nav a:hover, .dropdown-btn:hover {
+  background-color: #02518A;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: inherit;
+  padding-left: 12px;
+}
+
+/*******************************
+  Flex Box
+*******************************/
+.row {
+  display: flex;
+}
+
+.side_nav_cont {
+  flex: 12%;
+  height: 852px;
+}
+
+.flex_text {
+  flex: 44%;
+  height: 852px;
+}
+
+.heatmap_cont {
+  flex: 88%;
+  height: 852px;
+}
+
+/*******************************
+  Heatmap Image and Canvas
+*******************************/
+#heatmap {
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 88%;
+  background-repeat: no-repeat;
+}

@@ -6,32 +6,143 @@
   <meta name="description" content="Senior Capstone" />
   <meta name="keywords" content="capstone, heatmap, Westminster College" />
   <meta name="author" content="Benjamin T. Kotch" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/residential.css">
-  <title>Main Page</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/_capstone.css">
+  <title>Residential Buildings</title>
+  <!--scripts to load and initialize heatmap.js-->
+  <script src="javascripts/heatmap.js"></script>
+  <script>
+    var heatMapInstance = null;
+
+    //When passed an ID, makes a call to the API and gets the JSON object
+    //containing the map and all its data points. As of now, only passes
+    //the map
+    function getHeatMapData(map_id) {
+      fetch("http://localhost:80/api/maps" + "/" + map_id)
+        .then(
+          function(response) {
+            if (response.status !== 200) {
+              console.log("Looks like there was a problem. Status Code: " +
+                response.status);
+              return;
+            }
+
+            response.json().then(function(map) {
+              console.log(map);
+              renderHeatMap(map);
+            });
+          }
+        )
+        .catch(function(err) {
+          console.log("Fetch Error: ", err);
+        });
+    }
+
+    //When getHeatMapData() is called, it passes a JSON object containing
+    //a map and all of its data points to renderHeatMap(). This parses
+    //the JSON object and renders the heat map
+    function renderHeatMap(map) {
+      console.log("Map returned from getHeatMapData: " + JSON.stringify(map));
+      console.log("Data set from map: " + JSON.stringify(map.data_points));
+      var url = map.map_url;
+
+      var data = {
+        max: map.map_max,
+        min: map.map_min,
+        data: map.data_points
+      };
+
+      //loads data from test data to the heatmap
+      heatMapInstance.setData(data);
+
+      //loads image based on ID passed by onClick functions in drop down menus
+      document.getElementById("heatmap").style.backgroundImage = "url(" + url + ")";
+    }
+
+    function initializeHeatMap() {
+      // create configuration object and create heatmap with it
+      var config = {
+        container: document.getElementById("heatmap"),
+        radius: 50,
+        maxOpacity: .5,
+        minOpacity: 0,
+        blur: .75
+      };
+      heatMapInstance = h337.create(config);
+    }
+
+    window.onload = initializeHeatMap;
+  </script>
 </head>
 
 <body>
-  <header class="title_bar">
-    <h1 class="title_text">CAPSTONE - Residential Buildings</h1>
-  </header>
-
-  <div class="topnav">
-    <a href="new_index.html">Index Page</a>
-    <a href="#">Campus Map</a>
-    <a href="#">Academic Buildings</a>
-  </div>
-
   <div class="row">
-    <div class="left">
+    <div class="side_nav_cont">
+      <div class="side_nav">
+        <a href="index.html">Index Page</a>
+        <a href="#services">Academic Buildings</a>
+        <a href="#clients">Campus Map</a>
+        <p></p>
+        <button class="dropdown-btn">Browne Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">Eich Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">Ferguson Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">Galbreath Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#" onclick="getHeatMapData(0)">Ground Floor</a>
+          <a href="#" onclick="getHeatMapData(1)">First Floor</a>
+          <a href="#" onclick="getHeatMapData(2)">Second Floor</a>
+          <a href="#" onclick="getHeatMapData(3)">Third Floor</a>
+        </div>
+        <button class="dropdown-btn">Russel Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">Shaw Hall<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
     </div>
-
-    <div class="center">
-      <div id="floorplan"></div>
-    </div>
-
-    <div class="right">
+    <div class="heatmap_cont">
+      <div id="heatmap"></div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
