@@ -19,7 +19,7 @@ body, html {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: 	#013765;
+  background-color:	#013765;
   padding-top: 20px;
   overflow-x: hidden;
 }
@@ -46,6 +46,14 @@ body, html {
   display: none;
   background-color: inherit;
   padding-left: 12px;
+}
+
+.fa-angle-right {
+  padding: 4px 4px 4px 4px;
+}
+
+.fa-angle-down {
+  padding: 4px 4px 4px 4px;
 }
 
 /*******************************
