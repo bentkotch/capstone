@@ -2,50 +2,70 @@
   General CSS
 *******************************/
 body, html {
-  height: 100%;
-  margin: 0;
-  color: black;
   background-color: #fff;
   background-image: url(../images/index_bg.jpg);
-  font-family: 'Roboto', sans-serif;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 /*******************************
   Side Nav Bar
 *******************************/
 .side_nav {
+  background-color:	#013765;
+  color: #fff;
   height: 100%;
-  width: 12%;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
   position: fixed;
   top: 0;
-  left: 0;
-  background-color:	#013765;
-  padding-top: 20px;
-  overflow-x: hidden;
+  width: 14%;
 }
 
-.side_nav a, .dropdown-btn {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #fff;
-  display: block;
-  border: none;
+.side_nav a, .drop-btn {
   background: none;
-  width:100%;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-}
-
-.side_nav a:hover, .dropdown-btn:hover {
-  background-color: #02518A;
-}
-
-.dropdown-container {
-  display: none;
   background-color: inherit;
-  padding-left: 12px;
+  border: none;
+  color: inherit;
+  display: block;
+  font-size: 18px;
+  outline: none;
+  padding: 4px 8px 4px 16px;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+
+.side_nav p {
+  background: none;
+  background-color: inherit;
+  border-bottom-color: #fff;
+  border-bottom-style: solid;
+  border-bottom-width: medium;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  font-size: 22px;
+  outline: none;
+  padding: 8px 8px 8px 16px;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+
+.side_nav a:hover, .drop-btn:hover {
+  background-color: #02518A;
+  color: inherit;
+}
+
+.drop-cont {
+  background-color: inherit;
+  color: inherit;
+  display: none;
+  padding-left: 16px;
 }
 
 .fa-angle-right {
@@ -57,6 +77,19 @@ body, html {
 }
 
 /*******************************
+  Title
+*******************************/
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
+  color: black;
+  background-color: inherit;
+  width: 86%;
+  padding-left: 14%;
+}
+
+/*******************************
   Flex Box
 *******************************/
 .row {
@@ -64,27 +97,32 @@ body, html {
 }
 
 .side_nav_cont {
-  flex: 12%;
+  flex: 14%;
   height: 852px;
 }
 
 .flex_text {
-  flex: 44%;
+  flex: 43%;
   height: 852px;
 }
 
 .heatmap_cont {
-  flex: 88%;
+  flex: 86%;
   height: 852px;
+}
+
+.flex_text p{
+  padding: 8px 16px 8px 16px;
+  line-height: 1.6;
 }
 
 /*******************************
   Heatmap Image and Canvas
 *******************************/
 #heatmap {
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 88%;
   background-repeat: no-repeat;
+  height: 100%;
+  right: 0;
+  top: 0;
+  width: 86%;
 }

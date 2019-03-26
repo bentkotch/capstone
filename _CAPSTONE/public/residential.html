@@ -79,49 +79,50 @@
   <div class="row">
     <div class="side_nav_cont">
       <div class="side_nav">
+        <p>Page Menu</p>
         <a href="index.html">Index Page</a>
-        <a href="#services">Academic Buildings</a>
-        <a href="#clients">Campus Map</a>
-        <p></p>
-        <button class="dropdown-btn">Browne Hall<i class="fas fa-angle-down"></i></button>
-        <div class="dropdown-container">
+        <a href="#">Academic Buildings</a>
+        <a href="campus.html">Campus Map</a>
+        <p>Building Menu</p>
+        <button class="drop-btn">Browne Hall<i class="fas fa-angle-down"></i></button>
+        <div class="drop-cont">
           <a href="#" onclick="getHeatMapData(4)"><i class="fas fa-angle-right"></i>Ground Floor</a>
           <a href="#" onclick="getHeatMapData(5)"><i class="fas fa-angle-right"></i>First Floor</a>
           <a href="#" onclick="getHeatMapData(6)"><i class="fas fa-angle-right"></i>Second Floor</a>
           <a href="#" onclick="getHeatMapData(7)"><i class="fas fa-angle-right"></i>Third Floor</a>
         </div>
-        <button class="dropdown-btn">Eich Hall<i class="fas fa-angle-down"></i></button>
-        <div class="dropdown-container">
+        <button class="drop-btn">Eich Hall<i class="fas fa-angle-down"></i></button>
+        <div class="drop-cont">
           <!--
           <a href="#"><i class="fas fa-angle-right"></i>Link 1</a>
           <a href="#"><i class="fas fa-angle-right"></i>Link 2</a>
           <a href="#"><i class="fas fa-angle-right"></i>Link 3</a>
           -->
         </div>
-        <button class="dropdown-btn">Ferguson Hall<i class="fas fa-angle-down"></i></button>
-        <div class="dropdown-container">
+        <button class="drop-btn">Ferguson Hall<i class="fas fa-angle-down"></i></button>
+        <div class="drop-cont">
           <!--
           <a href="#"><i class="fas fa-angle-right"></i>Link 1</a>
           <a href="#"><i class="fas fa-angle-right"></i>Link 2</a>
           <a href="#"><i class="fas fa-angle-right"></i>Link 3</a>
           -->
         </div>
-        <button class="dropdown-btn">Galbreath Hall<i class="fas fa-angle-down"></i></button>
-        <div class="dropdown-container">
+        <button class="drop-btn">Galbreath Hall<i class="fas fa-angle-down"></i></button>
+        <div class="drop-cont">
           <a href="#" onclick="getHeatMapData(0)"><i class="fas fa-angle-right"></i>Ground Floor</a>
           <a href="#" onclick="getHeatMapData(1)"><i class="fas fa-angle-right"></i>First Floor</a>
           <a href="#" onclick="getHeatMapData(2)"><i class="fas fa-angle-right"></i>Second Floor</a>
           <a href="#" onclick="getHeatMapData(3)"><i class="fas fa-angle-right"></i>Third Floor</a>
         </div>
-        <button class="dropdown-btn">Russel Hall<i class="fas fa-angle-down"></i></button>
+        <button class="drop-btn">Russel Hall<i class="fas fa-angle-down"></i></button>
         <div class="dropdown-container">
           <a href="#" onclick="getHeatMapData(8)"><i class="fas fa-angle-right"></i>Ground Floor</a>
           <a href="#" onclick="getHeatMapData(9)"><i class="fas fa-angle-right"></i>First Floor</a>
           <a href="#" onclick="getHeatMapData(10)"><i class="fas fa-angle-right"></i>Second Floor</a>
           <a href="#" onclick="getHeatMapData(11)"><i class="fas fa-angle-right"></i>Third Floor</a>
         </div>
-        <button class="dropdown-btn">Shaw Hall<i class="fas fa-angle-down"></i></button>
-        <div class="dropdown-container">
+        <button class="drop-btn">Shaw Hall<i class="fas fa-angle-down"></i></button>
+        <div class="drop-cont">
           <a href="#" onclick="getHeatMapData(12)"><i class="fas fa-angle-right"></i>Ground Floor</a>
           <a href="#" onclick="getHeatMapData(13)"><i class="fas fa-angle-right"></i>First Floor</a>
           <a href="#" onclick="getHeatMapData(14)"><i class="fas fa-angle-right"></i>Second Floor</a>
@@ -136,7 +137,8 @@
 
   <script type="text/javascript">
     //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
+    //* Borrowed from W3Schools
+    var dropdown = document.getElementsByClassName("drop-btn");
     var i;
 
     for (i = 0; i < dropdown.length; i++) {
