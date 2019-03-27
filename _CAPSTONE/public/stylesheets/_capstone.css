@@ -68,12 +68,8 @@ body, html {
   padding-left: 16px;
 }
 
-.fa-angle-right {
-  padding: 4px 4px 4px 4px;
-}
-
-.fa-angle-down {
-  padding: 4px 4px 4px 4px;
+.side_nav i {
+  padding: 4px 8px 4px 8px;
 }
 
 /*******************************
@@ -82,7 +78,7 @@ body, html {
 .title {
   text-align: center;
   font-size: 30px;
-  font-weight: 200;
+  font-weight: 400;
   color: black;
   background-color: inherit;
   width: 86%;
@@ -121,6 +117,7 @@ body, html {
 *******************************/
 #heatmap {
   background-repeat: no-repeat;
+  background-size: contain;
   height: 100%;
   right: 0;
   top: 0;
